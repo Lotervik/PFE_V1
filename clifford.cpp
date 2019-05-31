@@ -2,7 +2,7 @@
 #include<vector>
 Clifford::Clifford()
 {
-
+	/*b rabi inchalah*/
 }
 
 Clifford::Clifford(string ch)
