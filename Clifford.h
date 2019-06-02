@@ -9,12 +9,12 @@ class Clifford
 public:
     Clifford();
     Clifford(string ch);
-    Clifford(string dom,double min,double max,string pc);
+    Clifford(string dom,string min,string max,string pc);
     static Clifford UnionCL(Clifford &a,Clifford &b);
     string toString();
 
     string dom,pc;
-    double min,max;
+    string min,max;
 
 private :
     double maximum(double a,double b);

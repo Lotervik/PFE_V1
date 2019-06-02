@@ -25,12 +25,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        clifford.cpp \
+        Clifford.cpp \
+        Concept.cpp \
+        Ontologie.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
-        clifford.h \
+        Clifford.h \
+        Concept.h \
+        Ontologie.h \
         mainwindow.h
 
 FORMS += \
