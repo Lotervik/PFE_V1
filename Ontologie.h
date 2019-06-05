@@ -13,6 +13,7 @@ public:
     void ajouterConcept(string __concept__);
     void ajouterConcept(Concept __Concept__);
     void afficherOnto();
+
     string nom;
     vector<Concept> liste_onto;
 };

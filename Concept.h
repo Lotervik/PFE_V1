@@ -1,16 +1,19 @@
 #ifndef CONCEPT_H
 #define CONCEPT_H
 #include<iostream>
-#include<Clifford.h>
+#include<clifford.h>
 using namespace std;
+
 class Concept
 {
 public:
     Concept();
     Concept(string __concept__);
     string toString();
+    void toClifford();
+
     string concept_onto;
-    string definition;
+    string definition; // le nom du concept
     Clifford cl;
 };
 

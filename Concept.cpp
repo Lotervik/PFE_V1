@@ -20,11 +20,32 @@ Concept::Concept(string __concept__)
         }
         else ch1=__concept__[i];
     }
+    this->toClifford();
+
 
 
 }
 
 string Concept::toString()
 {
-    return this->definition+"="+this->concept_onto+this->cl.toString();
+    return this->definition+"="+this->concept_onto+"\t   "+this->cl.toString();
 }
+
+void Concept::toClifford()
+{
+
+    Clifford cl1(this->concept_onto);
+
+    this->cl=cl1;
+}
+
+
+
+
+
+
+
+
+
+
+

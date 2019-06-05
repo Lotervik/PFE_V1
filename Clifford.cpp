@@ -25,13 +25,16 @@ Clifford::Clifford(string ch)
         if(v[j].at(1)=='M'&&v[j].at(1)=='I'&&v[j].at(1)=='N') cl.min=v[j].substr(2,v[j].size()-2);
         else if(v[j].at(1)=='M'&&v[j].at(1)=='A'&&v[j].at(1)=='X') cl.max=v[j].substr(2,v[j].size()-2);
         else cl.pc=v[j];
+
         c.push_back(cl);
     }
 
      for(unsigned long long j=0; j<c.size(); j++) {
 
          //std::cout <<c[j].toString()<<endl;
+
          cl1=UnionCL(cl1,c[j]);
+
 
      }
 
@@ -39,6 +42,7 @@ Clifford::Clifford(string ch)
     this->pc=cl1.pc;
     this->min=cl1.min;
     this->max=cl1.max;
+
 }
 
 Clifford::Clifford(string dom, string min, string max, string pc)
@@ -52,6 +56,7 @@ Clifford::Clifford(string dom, string min, string max, string pc)
 
 Clifford Clifford::UnionCL(Clifford &a, Clifford &b)
 {
+
     Clifford c("","","","");
 
     if(a.dom=="UNIV" || b.dom=="UNIV" ) c.dom="UNIV";
@@ -60,17 +65,27 @@ Clifford Clifford::UnionCL(Clifford &a, Clifford &b)
             c.dom=a.dom;
         } else c.dom=b.dom;
 
-    c.min=std::to_string(c.maximum(stod(a.min),stod(b.min)));
-    c.max=std::to_string(c.minimum(stod(a.max),stod(b.max)));
+    if (a.min=="") c.min=b.min;
+        else if (b.min=="") c.min=a.min;
+                 else c.min=std::to_string(c.maximum(stod(a.min),stod(b.min)));
+
+    if (a.max=="") c.max=b.max;
+        else if (b.max=="") c.max=a.max;
+                 else c.max=std::to_string(c.minimum(stod(a.max),stod(b.max)));
+
 
     if(a.pc!=""&&b.pc!="") c.pc=a.pc+"-"+b.pc;
     else if(a.pc!="") c.pc=a.pc;
          else c.pc=b.pc;
+
     return c;
 }
 
 string Clifford::toString() {
-    return "< " + dom + " , " + min + " , " + max + " , {" + pc + "} >\n";
+    if(min==""&& max=="")   return "< " + dom + ", MIN-R , MAX-R, {" + pc + "} >\n";
+        else if (min=="")   return "< " + dom + ", MIN-R , " + max + " , {" + pc + "} >\n";
+                 else  return "< " + dom + ", " + min + " , MAX-R , {" + pc + "} >\n";
+
 }
 
 double Clifford::maximum(double a, double b)
