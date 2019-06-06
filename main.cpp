@@ -16,7 +16,9 @@ int main(int argc, char *argv[])
     o1.ajouterConcept("ana=Personne^walid");
     o1.ajouterConcept("ana2=oiyj^khjnd");
     o1.ajouterConcept("omjlfe=Personne^torakguufyugkyigukgjuiu");
+    o1.transformerOnto();
     o1.afficherOnto();
+
 
 
     return 0;
