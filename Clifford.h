@@ -11,6 +11,7 @@ public:
     Clifford(string ch);
     Clifford(string dom,string min,string max,string pc);
     static Clifford UnionCL(Clifford &a,Clifford &b);
+    bool comparer(Clifford a , Clifford b);
     string toString();
 
     string dom,pc;

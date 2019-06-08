@@ -22,8 +22,11 @@ Clifford::Clifford(string ch)
 
     for(unsigned long long j=0; j<v.size(); j++){
         cl.dom="UNIV";
-        if(v[j].at(1)=='M'&&v[j].at(1)=='I'&&v[j].at(1)=='N') cl.min=v[j].substr(2,v[j].size()-2);
-        else if(v[j].at(1)=='M'&&v[j].at(1)=='A'&&v[j].at(1)=='X') cl.max=v[j].substr(2,v[j].size()-2);
+        cl.min="";
+        cl.max="";
+        cl.pc="";
+        if(v[j].at(0)=='M'&&v[j].at(1)=='I'&&v[j].at(2)=='N') cl.min=v[j].substr(3,v[j].size());
+        else if(v[j].at(0)=='M'&&v[j].at(1)=='A'&&v[j].at(2)=='X') cl.max=v[j].substr(3,v[j].size());
         else cl.pc=v[j];
 
         c.push_back(cl);
@@ -81,7 +84,16 @@ Clifford Clifford::UnionCL(Clifford &a, Clifford &b)
     return c;
 }
 
+bool Clifford::comparer(Clifford a, Clifford b)
+{
+    if(a.dom!=b.dom || a.min!=b.min || a.max!=b.max || a.pc!=b.pc)
+        return false;
+    else /* mzl kayen khedma hna :p */
+        return true;
+}
+
 string Clifford::toString() {
+    if(min==""&& max==""&&pc==""&&dom=="") return "b0\n";
     if(min==""&& max=="")   return "< " + dom + ", MIN-R , MAX-R, {" + pc + "} >\n";
         else if (min=="")   return "< " + dom + ", MIN-R , " + max + " , {" + pc + "} >\n";
                  else  return "< " + dom + ", " + min + " , MAX-R , {" + pc + "} >\n";

@@ -28,7 +28,11 @@ Concept::Concept(string __concept__)
 
 string Concept::toString()
 {
-    return this->definition+"="+this->concept_onto+"\t   "+this->cl.toString();
+    string ch = this->definition+" = "+this->concept_onto;
+    for (unsigned long long var = 0; var < __Max_Size_affichage__-definition.size()-concept_onto.size(); ++var) {
+        ch+=" ";
+    }
+    return ch+this->cl.toString();
 }
 
 void Concept::toClifford()
@@ -38,6 +42,19 @@ void Concept::toClifford()
 
     this->cl=cl1;
 }
+
+bool Concept::subsumption(Concept &c, Concept &d)
+{
+    Concept a;
+    a.cl=Clifford::UnionCL(c.cl,d.cl);
+    if(c.cl.toString()=="b0") return true;
+    else if(a.cl.toString()=="b0") return false;
+    else {
+
+    }
+    return true;
+}
+
 
 
 
