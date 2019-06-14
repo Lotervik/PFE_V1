@@ -12,7 +12,9 @@ public:
     Concept(string __concept__);
     string toString();
     void toClifford();
-    bool subsumption(Concept &c,Concept &d);
+    Concept intersect(Concept &c,Concept &d);
+    bool subsumption(Concept &c,Concept &d,int &i);
+    double calculeSimilarite(Concept &c,Concept &d);
 
 
     string concept_onto;

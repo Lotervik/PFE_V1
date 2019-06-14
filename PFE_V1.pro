@@ -28,6 +28,7 @@ SOURCES += \
         Clifford.cpp \
         Concept.cpp \
         Ontologie.cpp \
+        Role.cpp \
         main.cpp \
         mainwindow.cpp
 
@@ -35,6 +36,7 @@ HEADERS += \
         Clifford.h \
         Concept.h \
         Ontologie.h \
+        Role.h \
         mainwindow.h
 
 FORMS += \
