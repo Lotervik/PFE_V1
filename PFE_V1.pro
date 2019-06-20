@@ -29,6 +29,8 @@ SOURCES += \
         Concept.cpp \
         Ontologie.cpp \
         Role.cpp \
+        Synonyme.cpp \
+        dictionnaire.cpp \
         main.cpp \
         mainwindow.cpp
 
@@ -37,6 +39,8 @@ HEADERS += \
         Concept.h \
         Ontologie.h \
         Role.h \
+        Synonyme.h \
+        dictionnaire.h \
         mainwindow.h
 
 FORMS += \

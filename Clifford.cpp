@@ -17,8 +17,8 @@ Clifford::Clifford(string ch)
     unsigned long long cpt=0;
     for(unsigned long long i =0;i<ch.length();i++){
 
-        if(ch.at(i)!=' '&& ch.at(i)!='^')  { sh+=ch.at(i);  }
-        else if(ch.at(i)!=' ') {v.push_back(sh);   sh="";}
+        if(ch.at(i)!=' ' && ch.at(i)!='^')  { sh += ch.at(i); }
+        else if(ch.at(i)!=' ') { v.push_back(sh);  sh="";}
     }
     if(sh!="") v.push_back(sh);
 
@@ -30,12 +30,12 @@ Clifford::Clifford(string ch)
         Role role1;
         if(v[j].at(0)=='$'){
             cpt=0;
-            for (unsigned long long var = 0; var < v[j].size(); ++var) {
-                if(v[j].at(var)==' ') break;
+            for (unsigned long long var = 1; var < v[j].size(); ++var) {
+                if(v[j].at(var)=='#') break;
                 roleR+=v[j].at(var);
                 cpt++;
             }
-            cl.r.pc=v[j].substr(cpt+1,v[j].size());
+            cl.r.pc=v[j].substr(cpt+2,v[j].size());
             cl.r.role=roleR;
 
         } else if(v[j].at(0)=='M'&&v[j].at(1)=='I'&&v[j].at(2)=='N') cl.min=v[j].substr(3,v[j].size());
@@ -105,7 +105,9 @@ Clifford Clifford::UnionCL(Clifford &a, Clifford &b)
          else c.pc=b.pc;
 
     /*----------------Pour le Role ---------------*/
-    if(a.r.role==b.r.role){
+    if(a.r.role=="") c.r=b.r;
+    else if(b.r.role=="") c.r=a.r;
+    else if(a.r.role==b.r.role){
     if(a.r.max=="") c.r.max=b.r.max;
     else if (b.r.max=="") c.r.max=a.r.max;
          else c.r.max=std::to_string(c.minimum(stod(a.r.max),stod(b.r.max)));

@@ -1,5 +1,4 @@
 #include "Concept.h"
-#include<vector>
 Concept::Concept()
 {
 
@@ -110,4 +109,43 @@ double Concept::calculeSimilarite(Concept &c, Concept &d)
              return u;
          }
      }
+}
+
+double Concept::calculSimilariteSemantique(Concept &c, Concept &d)
+{
+
+    vector<string> _C_Concept_ = extraireConcept(c);
+    vector<string> _D_Concept_ = extraireConcept(d);
+    int _sommmeConceptegaux_=0;
+    for (unsigned long long var = 0; var < _C_Concept_.size(); ++var) {
+        for (unsigned long long var1 = 0; var1 < _D_Concept_.size(); ++var1) {
+            if(_C_Concept_.at(var)==_D_Concept_.at(var1)) {
+                _sommmeConceptegaux_++;
+                break;
+            }
+        }
+    }
+    return (double) _sommmeConceptegaux_/std::max(_C_Concept_.size(),_D_Concept_.size());
+
+
+}
+
+vector<string> Concept::extraireConcept(Concept &a)
+{
+    vector<string> v;
+    string __nonConcept__;
+    for (unsigned long long var = 0; var < a.cl.pc.size(); ++var) {
+        if(a.cl.pc.at(var)==',')  { v.push_back(__nonConcept__);  __nonConcept__=""; }
+        else __nonConcept__ += a.cl.pc.at(var);
+    }
+    if(__nonConcept__ != "") v.push_back(__nonConcept__);
+    return v;
+}
+
+bool Concept::exist(string __concept__, vector<string> &_listConcept_)
+{
+    for (unsigned long long var = 0; var < _listConcept_.size(); ++var) {
+        if(_listConcept_.at(var)==__concept__) return true;
+    }
+    return false;
 }
