@@ -105,28 +105,37 @@ double Concept::calculeSimilarite(Concept &c, Concept &d)
             x = x.intersect(c,d);
             double i=x.cl.cardinalite();
             double v = std::max(c.cl.cardinalite(),d.cl.cardinalite());
-             u=i/v ;
-             return u;
+            u=i/v ;
+            return u;
          }
      }
 }
 
-double Concept::calculSimilariteSemantique(Concept &c, Concept &d)
+double Concept::calculSimilariteSemantique(Concept &c, Concept &d,Dictionnaire &dict)
 {
 
     vector<string> _C_Concept_ = extraireConcept(c);
     vector<string> _D_Concept_ = extraireConcept(d);
-    int _sommmeConceptegaux_=0;
-    for (unsigned long long var = 0; var < _C_Concept_.size(); ++var) {
-        for (unsigned long long var1 = 0; var1 < _D_Concept_.size(); ++var1) {
-            if(_C_Concept_.at(var)==_D_Concept_.at(var1)) {
-                _sommmeConceptegaux_++;
-                break;
-            }
-        }
-    }
-    return (double) _sommmeConceptegaux_/std::max(_C_Concept_.size(),_D_Concept_.size());
+    string _c,_d;
+    bool p;
+    int _sommmeConceptegaux_=0, i;
+    if(!_C_Concept_.empty())
+    {
 
+        _c=_C_Concept_.at(0);
+        i=0;
+        while(_C_Concept_.size()!=0 && !p && i>=_C_Concept_.size()){
+            if(egaux(_c,_D_Concept_.at(i),dict))
+            {
+                _D_Concept_.erase(_D_Concept_.begin()+i);
+                p=true;
+                _sommmeConceptegaux_++;
+            }
+            i++;
+
+        }
+    return (double) _sommmeConceptegaux_/std::max(_C_Concept_.size(),_D_Concept_.size());
+}
 
 }
 
@@ -142,10 +151,17 @@ vector<string> Concept::extraireConcept(Concept &a)
     return v;
 }
 
-bool Concept::exist(string __concept__, vector<string> &_listConcept_)
+bool Concept::egaux(string _Concept1_, string _Concept2_,Dictionnaire &dict)
 {
-    for (unsigned long long var = 0; var < _listConcept_.size(); ++var) {
-        if(_listConcept_.at(var)==__concept__) return true;
+    Synonyme syn;
+    syn=dict.chercher(_Concept1_);
+    if (_Concept1_==_Concept2_) return true;
+    if(syn._mot_!=""){
+        for (int unsigned long long var = 0; var < syn._synonymes_.size(); ++var) {
+            if(_Concept2_==syn._synonymes_.at(var)) return true;
+        }
     }
     return false;
 }
+
+

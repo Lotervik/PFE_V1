@@ -43,3 +43,13 @@ Dictionnaire::Dictionnaire(string chemin)
 
     }
 }
+
+Synonyme Dictionnaire::chercher(string s)
+{
+    Synonyme syn("");
+    for (unsigned long long var = 0; var < _dict_.size(); ++var) {
+        if(_dict_.at(var)._mot_==s)
+            return _dict_.at(var);
+    }
+    return syn;
+}

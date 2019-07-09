@@ -21,14 +21,17 @@ int main(int argc, char *argv[])
     //o1.transformerOnto();
     o1.afficherOnto();
     o1.afficherListeConceptOnto();
+*/
+    Concept c,a("c1=a^b^MIN 4^c^$vfoot#ball"),
+            b("c2=z^y^a^MAX 6^MIN 5^$kola#dlzd");
 
-    Concept c,a("personne=kiki^lola^MIN 4^bingo^football"),
-            b("oooo=football^joma^replacement^lola^MAX 6^audi^$kola#dlzd");
+    Dictionnaire d("C:\\Users\\Ryad\\Desktop\\dict.txt");
+
     cout<<a.toString()<<endl;
     cout<<b.toString()<<endl;
     cout<<"SIM(a,b)= "<<c.calculeSimilarite(a,b)<<endl;
-    cout<<"SIMSEM(a,b)= "<<c.calculSimilariteSemantique(a,b)<<endl;
-*/
-    Dictionnaire d("C:\\Users\\Ryad\\Desktop\\jiji.txt");
+    cout<<"SIMSEM(a,b)= "<<c.calculSimilariteSemantique(a,b,d)<<endl;
 
+
+    return 0;
 }

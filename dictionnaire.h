@@ -11,9 +11,12 @@ class Dictionnaire
 public:
     Dictionnaire();
     Dictionnaire(string chemin);
-
-    ifstream _dict_file_;
+    Synonyme chercher(string s);
     vector<Synonyme> _dict_;
+
+private :
+    ifstream _dict_file_;
+
 };
 
 #endif // DICTIONNAIRE_H
