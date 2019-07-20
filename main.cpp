@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     //o1.transformerOnto();
     o1.afficherOnto();
     o1.afficherListeConceptOnto();
-*/
+
     Concept c,a("c1=a^b^MIN 4^c^$vfoot#ball"),
             b("c2=z^y^a^MAX 6^MIN 5^$kola#dlzd");
 
@@ -31,7 +31,9 @@ int main(int argc, char *argv[])
     cout<<b.toString()<<endl;
     cout<<"SIM(a,b)= "<<c.calculeSimilarite(a,b)<<endl;
     cout<<"SIMSEM(a,b)= "<<c.calculSimilariteSemantique(a,b,d)<<endl;
-
+*/
+    ontologie o1("o1");
+    o1.transformerOnto();
 
     return 0;
 }
